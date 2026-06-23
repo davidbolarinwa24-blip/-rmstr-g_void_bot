@@ -21,8 +21,8 @@ async def rank_cmd(message: types.Message):
         await message.answer("Usage: /rank <player_id>")
         return
     player_id = args[1]
-    url = f"https://freefire-api.p.rapidapi.com/player/{player_id}"
-    headers = {"X-RapidAPI-Key": FF_API_KEY, "X-RapidAPI-Host": "freefire-api.p.rapidapi.com"}
+    url = f"https://free-fire-api.p.rapidapi.com/player/{player_id}"
+    headers = {"X-RapidAPI-Key": FF_API_KEY, "X-RapidAPI-Host": "free-fire-api.p.rapidapi.com"}
     async with aiohttp.ClientSession() as session:
         async with session.get(url, headers=headers) as resp:
             if resp.status == 200:
