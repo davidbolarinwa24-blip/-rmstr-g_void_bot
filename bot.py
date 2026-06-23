@@ -12,9 +12,9 @@ dp = Dispatcher()
 
 @dp.message(Command("start"))
 async def start_cmd(message: types.Message):
-    await message.answer("🔮 Årmstrøng Void Bot is online 24/7!\nSend: /rank UID\nExample: /rank 811094988")
+    await message.answer("🔮 Årmstrøng Void Bot is online 24/7!\nSend: /ff UID\nExample: /rank 811094988")
 
-@dp.message(Command("rank"))
+@dp.message(Command("ff"))
 async def rank_cmd(message: types.Message):
     args = message.text.split()
     if len(args) < 2:
