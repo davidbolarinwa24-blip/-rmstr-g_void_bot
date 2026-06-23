@@ -12,13 +12,13 @@ dp = Dispatcher()
 
 @dp.message(Command("start"))
 async def start_cmd(message: types.Message):
-    await message.answer("🔮 Årmstrøng Void Bot is online 24/7!\nSend: /ff UID\nExample: /rank 811094988")
+    await message.answer("🔮 Årmstrøng Void Bot is online 24/7!\nSend: /ff UID\nExample: /ff 811094988")
 
 @dp.message(Command("ff"))
-async def rank_cmd(message: types.Message):
+async def ff_cmd(message: types.Message):
     args = message.text.split()
     if len(args) < 2:
-        await message.answer("Usage: /rank <player_id>")
+        await message.answer("Usage: /ff <player_id>")
         return
     player_id = args[1]
     url = f"https://free-fire-api.p.rapidapi.com/player/{player_id}"
@@ -31,7 +31,9 @@ async def rank_cmd(message: types.Message):
                 name = data.get("nickname", "Unknown")
                 await message.answer(f"Player: {name}\nRank: {rank}")
             else:
-                await message.answer("❌ API error. Try again later.")
+                # Show actual error so we can debug
+                text = await resp.text()
+                await message.answer(f"❌ API error {resp.status}\n{ text[:200]}")
 
 if __name__ == "__main__":
     asyncio.run(dp.start_polling(bot))
